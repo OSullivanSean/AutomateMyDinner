@@ -1,5 +1,6 @@
 package com.sean.AutomateMyDinner.config;
 
+import com.sean.AutomateMyDinner.dao.EmailDao;
 import com.sean.AutomateMyDinner.dao.MealDao;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +45,11 @@ public class DatabaseConfig {
     @Bean
     public MealDao mealDao(){
         return new MealDao();
+    }
+
+    @Bean
+    public EmailDao emailDao(){
+        return new EmailDao();
     }
 
 }

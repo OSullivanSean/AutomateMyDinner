@@ -14,4 +14,16 @@ public class MealService {
         List<Meal> mealList = mealDao.getMeals();
         return mealList;
     }
+
+    public boolean addMeal(Meal meal) {
+        return mealDao.addMeal(meal);
+    }
+
+    public boolean updateMeal(Meal meal) {
+        return mealDao.updateMeal(meal);
+    }
+
+    public boolean deleteMeal(int id) {
+        return mealDao.deleteMeal(id);
+    }
 }
