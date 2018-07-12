@@ -1,7 +1,7 @@
 package com.sean.AutomateMyDinner.controller;
 
-import com.sean.AutomateMyDinner.dao.MealDao;
 import com.sean.AutomateMyDinner.model.Meal;
+import com.sean.AutomateMyDinner.service.MealService;
 import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +14,11 @@ import java.util.List;
 public class MealController {
 
     @Autowired
-    private MealDao mealDao;
+    private MealService mealService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Meal> getMeals(){
-        return mealDao.getMeals();
+        return mealService.getMeals();
     }
 
 }

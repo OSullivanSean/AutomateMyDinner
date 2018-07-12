@@ -1,7 +1,6 @@
 package com.sean.AutomateMyDinner.model;
 
 import org.json.JSONObject;
-import org.springframework.stereotype.Component;
 
 public class Meal {
 
