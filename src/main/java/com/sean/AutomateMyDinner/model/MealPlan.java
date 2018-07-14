@@ -1,29 +1,29 @@
 package com.sean.AutomateMyDinner.model;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class MealPlan {
 
-    private Map<Date, Meal> mealList;
-    private String ingredientsList;
 
-    public MealPlan(){}
+    private List<Day> dayList;
+    private List<String> ingredientsList;
 
-    public Map<Date, Meal> getMealList() {
-        return mealList;
+    public MealPlan() {
     }
 
-    public void setMealList(Map<Date, Meal> mealList) {
-        this.mealList = mealList;
+    public List<Day> getDayList() {
+        return dayList;
     }
 
-    public String getIngredientsList() {
+    public void setDayList(List<Day> dayList) {
+        this.dayList = dayList;
+    }
+
+    public List<String> getIngredientsList() {
         return ingredientsList;
     }
 
-    public void setIngredientsList(String ingredientsList) {
+    public void setIngredientsList(List<String> ingredientsList) {
         this.ingredientsList = ingredientsList;
     }
 }

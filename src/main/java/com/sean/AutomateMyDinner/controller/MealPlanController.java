@@ -5,6 +5,7 @@ import com.sean.AutomateMyDinner.service.MealPlanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,12 +19,14 @@ public class MealPlanController {
     @Autowired
     MealPlanService mealPlanService;
 
+    @CrossOrigin
     @RequestMapping(value = "/current", method = RequestMethod.GET)
     public MealPlan getCurrentMealPlan(){
         LOGGER.info("Retrieving current meal plan...");
         return mealPlanService.getCurrentMealPlan();
     }
 
+    @CrossOrigin
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public MealPlan getNewMealPlan(){
         LOGGER.info("Retrieving new meal plan...");

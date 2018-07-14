@@ -1,0 +1,30 @@
+<h2>Add new Meal</h2>
+<div class="panel-body">
+  <div class="form-group">
+    <div class="row">
+      <label>Name:</label>
+    </div>
+    <div class="row">
+      <input [(ngModel)]="meal.name" placeholder="name">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label>Recipe:</label>
+    </div>
+    <div class="row">
+      <textarea [(ngModel)]="meal.recipe" rows="5" placeholder="do this, then that..."></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label>Ingredients:</label>
+    </div>
+    <div class="row">
+      <textarea [(ngModel)]="meal.ingredients" rows="5" placeholder="ingredient1,ingredient2"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn-primary" (click)="addMeal()">Add</button>
+  </div>
+</div>

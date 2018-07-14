@@ -1,0 +1,55 @@
+<div class="row">
+
+  <div class="col-lg-4">
+    <h2>Meal Plan:</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Meal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let day of mealPlan.dayList" (click)="onSelect(day)">
+          <td>{{day.date | date:'EEE-dd-MMM-yy'}}</td>
+          <td>{{day.meal.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <button class="btn-warning" (click)="generateNewMealPlan()">Generate New Plan</button>
+
+    <br>
+
+  </div>
+
+  <div class="col-lg-8">
+    <h2>Details:</h2>
+    <div class="pre-scrollable">
+      <app-mealdetails [meal]="selectedMeal"></app-mealdetails>
+    </div>
+
+    <br>
+
+    <h2>Shopping List</h2>
+    <div class="col-lg-4">
+      <div class="pre-scrollable">
+        <table class="bordered-table">
+          <tbody>
+          <tr *ngFor="let ingredient of mealPlan.ingredientsList">
+            <td>
+              {{ingredient}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+

@@ -1,6 +1,7 @@
 package com.sean.AutomateMyDinner.service;
 
 import com.sean.AutomateMyDinner.dao.MealDao;
+import com.sean.AutomateMyDinner.model.Day;
 import com.sean.AutomateMyDinner.model.Meal;
 import com.sean.AutomateMyDinner.model.MealPlan;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ public class MealPlanService {
         if(currentMealPlan == null){
             LOGGER.info("No current meal plan available...");
             createNewMealPlan();
+
         }
 
         return currentMealPlan;
@@ -42,45 +44,56 @@ public class MealPlanService {
     private boolean createNewMealPlan() {
         LOGGER.info("Creating new meal plan...");
         currentMealPlan = new MealPlan();
-        setMealList();
+        try {
+            setDayList();
+        }catch (Exception e){
+            LOGGER.info("Failed to create new meal plan: " + e.getMessage());
+        }
         setIngredientsList();
 
         return true;
     }
 
-    private boolean setMealList() {
-        List<Meal> mealList = mealDao.getMeals();
-        currentMealPlan.setMealList(pickMealsForWeek(mealList));
+    private boolean setDayList() throws Exception{
+        List<Day> dayList = new ArrayList<>();
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+
+        List<Meal> mealList = mealDao.getMeals();
+        if(mealList.size() < 7){
+            throw new Exception("Less than 7 meals currently saved in database");
+        }
+
+        for(int i = 0; i < 7; i++){
+            Day day = new Day();
+            calendar.add(Calendar.DATE, 1);
+            day.setDate(calendar.getTime());
+            Collections.shuffle(mealList);
+            day.setMeal(mealList.get(0));
+            mealList.remove(0);
+            dayList.add(day);
+        }
+        currentMealPlan.setDayList(dayList);
         return true;
     }
 
     private boolean setIngredientsList() {
         LOGGER.info("Creating ingredients list...");
-        //TODO refactor to remove duplicates
-        String ingredientsList = "";
-        for(Meal meal: currentMealPlan.getMealList().values()){
-            ingredientsList += meal.getIngredients();
+        //TODO refactor to remove duplicates and beautify
+        String ingredientsListString = "";
+        List<String> ingredientsList = new ArrayList<>();
+        for(Day day: currentMealPlan.getDayList()){
+            ingredientsListString += "," + day.getMeal().getIngredients();
+        }
+        for(String ingredient: ingredientsListString.split(",")){
+            ingredientsList.add(ingredient.trim());
         }
         currentMealPlan.setIngredientsList(ingredientsList);
         LOGGER.info("Ingredients list: {}", ingredientsList);
         return true;
     }
 
-    private Map<Date,Meal> pickMealsForWeek(List<Meal> mealList) {
-        LOGGER.info("Selecting meals for the next 7 days...");
-        Map<Date, Meal> plannedMeals = new TreeMap<>();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-
-        for(int i = 0; i < 7; i++){
-            Collections.shuffle(mealList);
-            calendar.add(Calendar.DATE, 1);
-            plannedMeals.put(calendar.getTime(), mealList.get(0));
-        }
-        LOGGER.info("Planned meals: {}", plannedMeals);
-        return plannedMeals;
-    }
 
 }

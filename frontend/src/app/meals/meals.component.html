@@ -1,0 +1,27 @@
+
+<div class="row">
+  <div class="col-lg-4">
+    <h2>Meals:</h2>
+    <div class="pre-scrollable">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Meal</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let meal of mealList" (click)="onSelect(meal)">
+          <td>{{meal.name}}</td><td><button class="btn-danger" (click)="deleteMeal(meal)">Delete</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <h2>Details:</h2>
+    <app-mealdetails [meal]="selectedMeal"></app-mealdetails>
+  </div>
+</div>
+
+
