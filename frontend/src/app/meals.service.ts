@@ -15,10 +15,10 @@ export class MealsService {
   }
 
   deleteMeal(meal: Meal) {
-    this.http.post('/meals/delete', meal.id).subscribe();
+    this.http.post( this.mealsUrl + '/delete', meal.id).subscribe();
   }
 
   addMeal(meal: Meal) {
-    this.http.post('/meals/add', meal).subscribe();
+    this.http.post(this.mealsUrl + '/add', meal).subscribe();
   }
 }
