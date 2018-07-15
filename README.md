@@ -13,4 +13,4 @@ then run the queries in DDL script (src/main/SQL/DDL.sql) to create the database
 Run maven 'package' command to create an executable jar.
 
 <h4>3. Run the Application</h4>
-Execute the jar and open the web front end at <a>http://localhost:8089</a>
+Execute the jar and open the local web front end at: http://localhost:8089
