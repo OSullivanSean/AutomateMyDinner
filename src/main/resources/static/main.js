@@ -527,10 +527,10 @@ var MealsService = /** @class */ (function () {
         return this.http.get(this.mealsUrl);
     };
     MealsService.prototype.deleteMeal = function (meal) {
-        this.http.post('/meals/delete', meal.id).subscribe();
+        this.http.post(this.mealsUrl + '/delete', meal.id).subscribe();
     };
     MealsService.prototype.addMeal = function (meal) {
-        this.http.post('/meals/add', meal).subscribe();
+        this.http.post(this.mealsUrl + '/add', meal).subscribe();
     };
     MealsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
