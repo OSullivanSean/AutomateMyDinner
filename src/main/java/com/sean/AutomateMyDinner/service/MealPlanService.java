@@ -89,6 +89,7 @@ public class MealPlanService {
         for(String ingredient: ingredientsListString.split(",")){
             ingredientsList.add(ingredient.trim());
         }
+        Collections.sort(ingredientsList);
         currentMealPlan.setIngredientsList(ingredientsList);
         LOGGER.info("Ingredients list: {}", ingredientsList);
         return true;
