@@ -5,9 +5,10 @@
 
 <h2>Installation Instructions</h2>
 <h4>1. Create Database</h4>
-<p>Install mysql on the host machine:
-  <i>sudo apt-get install mysql-server</i>\n
-  then run the DDL script to create the database, user and tables.</p>
+<p>Install mysql on the host machine:</p>
+<p><i>sudo apt-get install mysql-server</i></p>
+  
+then run the DDL script to create the database, user and tables.</p>
 <h4>2. Create Package</h4>
 <p>Run a maven package to create an executable jar.</p>
 <h4>3. Run the Application</h4>
