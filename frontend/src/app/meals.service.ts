@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class MealsService {
-  private mealsUrl = 'http://localhost:8089/meals';
+  private mealsUrl = '/meals';
   constructor(private http: HttpClient) { }
 
   getMealList(): Observable<Meal[]> {
@@ -15,10 +15,10 @@ export class MealsService {
   }
 
   deleteMeal(meal: Meal) {
-    return this.http.post(this.mealsUrl + '/delete', meal.id).subscribe();
+    this.http.post('/meals/delete', meal.id).subscribe();
   }
 
   addMeal(meal: Meal) {
-    return this.http.post(this.mealsUrl + '/add', meal).subscribe();
+    this.http.post('/meals/add', meal).subscribe();
   }
 }

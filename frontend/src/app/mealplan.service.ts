@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class MealplanService {
-  private mealPlanUrl = 'http://localhost:8089/plan';
+  private mealPlanUrl = '/plan';
   constructor(private http: HttpClient) { }
 
   getMealPlan(): Observable<MealPlan> {

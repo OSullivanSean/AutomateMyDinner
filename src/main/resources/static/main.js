@@ -396,7 +396,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var MealplanService = /** @class */ (function () {
     function MealplanService(http) {
         this.http = http;
-        this.mealPlanUrl = 'http://localhost:8089/plan';
+        this.mealPlanUrl = '/plan';
     }
     MealplanService.prototype.getMealPlan = function () {
         return this.http.get(this.mealPlanUrl + '/current');
@@ -521,16 +521,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var MealsService = /** @class */ (function () {
     function MealsService(http) {
         this.http = http;
-        this.mealsUrl = 'http://localhost:8089/meals';
+        this.mealsUrl = '/meals';
     }
     MealsService.prototype.getMealList = function () {
         return this.http.get(this.mealsUrl);
     };
     MealsService.prototype.deleteMeal = function (meal) {
-        return this.http.post(this.mealsUrl + '/delete', meal.id).subscribe();
+        this.http.post('/meals/delete', meal.id).subscribe();
     };
     MealsService.prototype.addMeal = function (meal) {
-        return this.http.post(this.mealsUrl + '/add', meal).subscribe();
+        this.http.post('/meals/add', meal).subscribe();
     };
     MealsService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
