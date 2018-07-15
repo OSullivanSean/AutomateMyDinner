@@ -36,7 +36,7 @@ public class MealPlanService {
 
     public MealPlan getNewMealPlan() {
         createNewMealPlan();
-        emailService.emailMealPlan(currentMealPlan);
+//        emailService.emailMealPlan(currentMealPlan);
 
         return currentMealPlan;
     }
@@ -87,7 +87,9 @@ public class MealPlanService {
             ingredientsListString += "," + day.getMeal().getIngredients();
         }
         for(String ingredient: ingredientsListString.split(",")){
-            ingredientsList.add(ingredient.trim());
+            if(!ingredient.isEmpty()){
+                ingredientsList.add(ingredient.trim().toLowerCase());
+            }
         }
         Collections.sort(ingredientsList);
         currentMealPlan.setIngredientsList(ingredientsList);
